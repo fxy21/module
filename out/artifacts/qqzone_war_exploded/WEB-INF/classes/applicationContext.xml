@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans>
+    <bean id="userBasicDao" class="com.example.dao.UserBasicDao"/>
+
+    <bean id="userBasicService" class="com.example.service.UserBasicService">
+        <property name="userBasicDao" ref="userBasicDao"/>
+    </bean>
+
+    <bean id="user" class="com.example.controller.UserController">
+        <property name="userBasicService" ref="userBasicService"/>
+        <property name="topicService" ref="topicService"/>
+    </bean>
+
+
+    <bean id="topicDao" class="com.example.dao.TopicDao"/>
+
+    <bean id="topicService" class="com.example.service.TopicService">
+        <property name="topicDao" ref="topicDao"/>
+        <property name="replyService" ref="replyService"/>
+        <property name="userBasicService" ref="userBasicService"/>
+    </bean>
+
+    <bean id="topic" class="com.example.controller.TopicController">
+        <property name="topicService" ref="topicService"/>
+    </bean>
+
+
+    <bean id="replyDao" class="com.example.dao.ReplyDao"/>
+
+    <bean id="replyService" class="com.example.service.ReplyService">
+        <property name="replyDao" ref="replyDao"/>
+        <property name="hostReplyService" ref="hostReplyService"/>
+    </bean>
+
+    <bean id="reply" class="com.example.controller.ReplyController">
+        <property name="replyService" ref="replyService"/>
+    </bean>
+
+
+    <bean id="hostReplyDao" class="com.example.dao.HostReplyDao"/>
+
+    <bean id="hostReplyService" class="com.example.service.HostReplyService">
+        <property name="hostReplyDao" ref="hostReplyDao"/>
+    </bean>
+
+
+    <bean id="page" class="com.example.controller.PageController"/>
+</beans>
